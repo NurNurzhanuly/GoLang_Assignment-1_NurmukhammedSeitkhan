@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	import "github.com/NurNurzhanuly/Assignment1/Assignment1/Employees"
-	import "github.com/NurNurzhanuly/Assignment1/Assignment1/Library"
-	import "github.com/NurNurzhanuly/Assignment1/Assignment1/Shapes"
-	import "github.com/NurNurzhanuly/Assignment1/Assignment1/Bank"
+
+	"github.com/NurNurzhanuly/Assignment1/Assignment1/bank"
+	"github.com/NurNurzhanuly/Assignment1/Assignment1/employees"
+	"github.com/NurNurzhanuly/Assignment1/Assignment1/library"
+	"github.com/NurNurzhanuly/Assignment1/Assignment1/shapes"
 )
 
 func main() {
@@ -42,7 +43,7 @@ func main() {
 }
 
 func manageLibrary() {
-	library := library.NewLibrary()
+	lib := library.NewLibrary()
 	for {
 		fmt.Println("Library Management:")
 		fmt.Println("1. Add a Book")
@@ -64,19 +65,19 @@ func manageLibrary() {
 			fmt.Scan(&title)
 			fmt.Print("Enter Book Author: ")
 			fmt.Scan(&author)
-			library.AddBook(library.Book{ID: id, Title: title, Author: author, IsBorrowed: false})
+			lib.AddBook(library.Book{ID: id, Title: title, Author: author, IsBorrowed: false})
 		case 2:
 			var id string
 			fmt.Print("Enter Book ID to Borrow: ")
 			fmt.Scan(&id)
-			library.BorrowBook(id)
+			lib.BorrowBook(id)
 		case 3:
 			var id string
 			fmt.Print("Enter Book ID to Return: ")
 			fmt.Scan(&id)
-			library.ReturnBook(id)
+			lib.ReturnBook(id)
 		case 4:
-			library.ListBooks()
+			lib.ListBooks()
 		case 5:
 			return
 		default:
@@ -86,15 +87,15 @@ func manageLibrary() {
 }
 
 func manageShapes() {
-	shapes := []shapes.Shape{
-		Shapes.NewRectangle(5, 3),
-		Shapes.NewCircle(4),
-		Shapes.NewSquare(6),
-		Shapes.NewTriangle(3, 4, 5),
+	shapesList := []shapes.Shape{
+		shapes.NewRectangle(5, 3),
+		shapes.NewCircle(4),
+		shapes.NewSquare(6),
+		shapes.NewTriangle(3, 4, 5),
 	}
 
 	fmt.Println("Shapes Calculator:")
-	for _, shape := range shapes {
+	for _, shape := range shapesList {
 		shapes.PrintShapeDetails(shape)
 	}
 }
@@ -137,7 +138,7 @@ func manageEmployees() {
 			fmt.Scan(&hourlyRate)
 			fmt.Print("Enter Hours Worked: ")
 			fmt.Scan(&hoursWorked)
-			company.AddEmployee(Employees.NewPartTimeEmployee(id, name, hourlyRate, hoursWorked))
+			company.AddEmployee(employees.NewPartTimeEmployee(id, name, hourlyRate, hoursWorked))
 		case 3:
 			company.ListEmployees()
 		case 4:
@@ -149,7 +150,7 @@ func manageEmployees() {
 }
 
 func manageBankAccounts() {
-	account := Bank.NewBankAccount("12345", "John Doe", 1000.0)
+	account := bank.NewBankAccount("12345", "John Doe", 1000.0)
 	for {
 		fmt.Println("Bank Account Management:")
 		fmt.Println("1. Deposit")
@@ -173,7 +174,7 @@ func manageBankAccounts() {
 			fmt.Scan(&amount)
 			account.Withdraw(amount)
 		case 3:
-			account.GetBalance()
+			fmt.Printf("Current Balance: %.2f\n", account.GetBalance())
 		case 4:
 			return
 		default:

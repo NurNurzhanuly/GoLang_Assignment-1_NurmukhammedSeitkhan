@@ -8,6 +8,10 @@ type BankAccount struct {
 	Balance       float64
 }
 
+func NewBankAccount(accountNumber, holderName string, balance float64) *BankAccount {
+	return &BankAccount{AccountNumber: accountNumber, HolderName: holderName, Balance: balance}
+}
+
 func (b *BankAccount) Deposit(amount float64) {
 	b.Balance += amount
 	fmt.Printf("Deposited %.2f. New balance: %.2f\n", amount, b.Balance)

@@ -31,6 +31,10 @@ type Company struct {
 	Employees map[string]Employee
 }
 
+func NewCompany() *Company {
+	return &Company{Employees: make(map[string]Employee)}
+}
+
 func (c *Company) AddEmployee(id string, emp Employee) {
 	c.Employees[id] = emp
 }
