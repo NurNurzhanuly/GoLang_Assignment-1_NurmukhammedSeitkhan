@@ -45,7 +45,7 @@ func main() {
 func manageLibrary() {
 	lib := library.NewLibrary()
 	for {
-		fmt.Println("Library Management:")
+		fmt.Println("\nLibrary Management:")
 		fmt.Println("1. Add a Book")
 		fmt.Println("2. Borrow a Book")
 		fmt.Println("3. Return a Book")
@@ -88,22 +88,22 @@ func manageLibrary() {
 
 func manageShapes() {
 	shapesList := []shapes.Shape{
-		shapes.NewRectangle(5, 3),
-		shapes.NewCircle(4),
-		shapes.NewSquare(6),
-		shapes.NewTriangle(3, 4, 5),
+		shapes.Rectangle{Length: 5, Width: 3},
+		shapes.Circle{Radius: 4},
+		shapes.Square{Side: 6},
+		shapes.Triangle{SideA: 3, SideB: 4, SideC: 5},
 	}
 
-	fmt.Println("Shapes Calculator:")
+	fmt.Println("\nShapes Calculator:")
 	for _, shape := range shapesList {
 		shapes.PrintShapeDetails(shape)
 	}
 }
 
 func manageEmployees() {
-	company := employees.NewCompany()
+	company := employees.Company{Employees: make(map[string]employees.Employee)}
 	for {
-		fmt.Println("Employee Management:")
+		fmt.Println("\nEmployee Management:")
 		fmt.Println("1. Add Full-Time Employee")
 		fmt.Println("2. Add Part-Time Employee")
 		fmt.Println("3. List Employees")
@@ -124,7 +124,7 @@ func manageEmployees() {
 			fmt.Scan(&name)
 			fmt.Print("Enter Salary: ")
 			fmt.Scan(&salary)
-			company.AddEmployee(employees.NewFullTimeEmployee(id, name, salary))
+			company.AddEmployee(fmt.Sprintf("FT%d", id), employees.FullTimeEmployee{ID: id, Name: name, Salary: salary})
 		case 2:
 			var id uint64
 			var name string
@@ -138,7 +138,7 @@ func manageEmployees() {
 			fmt.Scan(&hourlyRate)
 			fmt.Print("Enter Hours Worked: ")
 			fmt.Scan(&hoursWorked)
-			company.AddEmployee(employees.NewPartTimeEmployee(id, name, hourlyRate, hoursWorked))
+			company.AddEmployee(fmt.Sprintf("PT%d", id), employees.PartTimeEmployee{ID: id, Name: name, HourlyRate: hourlyRate, HoursWorked: hoursWorked})
 		case 3:
 			company.ListEmployees()
 		case 4:
@@ -150,9 +150,9 @@ func manageEmployees() {
 }
 
 func manageBankAccounts() {
-	account := bank.NewBankAccount("12345", "John Doe", 1000.0)
+	account := bank.BankAccount{AccountNumber: "12345", HolderName: "John Doe", Balance: 1000.0}
 	for {
-		fmt.Println("Bank Account Management:")
+		fmt.Println("\nBank Account Management:")
 		fmt.Println("1. Deposit")
 		fmt.Println("2. Withdraw")
 		fmt.Println("3. Get Balance")
